@@ -1,0 +1,172 @@
+// Customer Info Styles
+.customer-info {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 60%;
+}
+
+.initials-container {
+  position: relative;
+  flex-shrink: 0; // Never shrink
+  width: 40px;
+}
+
+
+
+.header-content {
+  flex-grow: 1;
+  margin: 0 20px;
+
+  h2 {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+  }
+
+  h3 {
+    font-size: 20px;
+    margin: 4px 0 0;
+  }
+}
+
+.customer-info {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  max-width: 60%;
+}
+
+.initials-container {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.status-icon {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  color: #4CAF50;
+  background: white;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+.initials {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  background: 'linear-gradient(133.53deg, #00FF94 2.44%, rgba(112, 0, 255, 0.17) 100%)';
+}
+
+.customer-details {
+  margin-left: 12px;
+  min-width: 0;
+  flex: 1;
+}
+
+.id-and-parent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  min-width: 0;
+}
+
+.customer-id {
+  font-size: 14px;
+  color: #666;
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.parent-info {
+  font-size: 14px;
+  color: #000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
+  flex: 1;
+  font-weight: 500;
+}
+
+.customer-names {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  min-width: 0;
+}
+
+.name, .name-2 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 45%;
+}
+
+.separator {
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+.row-right {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  flex-shrink: 0;
+  min-width: 300px;
+}
+
+.customer-location-container {
+  width: 150px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.customer-location {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #666;
+  text-align: left;
+}
+
+.start-return {
+  background: #f0f0f0;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  color: #4444ff;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: 120px;
+  text-align: center;
+}
+
+.back-button, .close-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 8px;
+  color: #666;
+}
+
+.loading {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+}
+
+// ... rest of customer info styles 

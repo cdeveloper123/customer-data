@@ -1,0 +1,22 @@
+.home {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+  
+  .open-modal-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    background-color: #4444ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .open-modal-btn:hover {
+    background-color: #3333cc;
+  }
