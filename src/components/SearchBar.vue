@@ -5,8 +5,8 @@
       <input 
         type="text"
         placeholder="Search for ID or name"
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
+        :value="value"
+        @input="$emit('input', $event.target.value)"
       >
     </div>
     <div class="results-count">
@@ -18,12 +18,10 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
-
-export default defineComponent({
+export default {
   name: 'SearchBar',
   props: {
-    modelValue: String,
+    value: String,
     filteredCount: {
       type: Number,
       required: true
@@ -32,7 +30,6 @@ export default defineComponent({
       type: Number,
       required: true
     }
-  },
-  emits: ['update:modelValue']
-})
+  }
+}
 </script> 

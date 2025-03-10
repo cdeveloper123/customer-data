@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 import CustomerSelectionModal from '@/components/CustomerSelectionModal.vue'
 
 export default {
@@ -21,27 +20,21 @@ export default {
   components: {
     CustomerSelectionModal
   },
-  setup() {
-    const isModalOpen = ref(false)
-
-    const openModal = () => {
-      isModalOpen.value = true
+  data() {
+    return {
+      isModalOpen: false
     }
-
-    const closeModal = () => {
-      isModalOpen.value = false
-    }
-
-    const handleCustomerSelect = (customer) => {
+  },
+  methods: {
+    openModal() {
+      this.isModalOpen = true
+    },
+    closeModal() {
+      this.isModalOpen = false
+    },
+    handleCustomerSelect(customer) {
       console.log('Selected customer:', customer)
       // Handle the selected customer here
-    }
-
-    return {
-      isModalOpen,
-      openModal,
-      closeModal,
-      handleCustomerSelect
     }
   }
 }

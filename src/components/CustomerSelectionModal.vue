@@ -81,12 +81,7 @@
 </template>
 
 <script>
-import { onMounted } from 'vue'
-import { useStore } from 'vuex'
 import SearchBar from '@/components/SearchBar.vue'
-import { useCustomers } from '@/composables/useCustomers'
-import { useCustomerDetails } from '@/composables/useCustomerDetails'
-
 
 export default {
   name: 'CustomerSelectionModal',
@@ -99,40 +94,67 @@ export default {
       required: true
     }
   },
-  setup(props, { emit }) {
-    const store = useStore()
-    const { loading, searchQuery, filteredCustomers, totalCustomers } = useCustomers(emit)
-    const getCustomerCity = useCustomerDetails().getCustomerCity
-    const getInitials = useCustomerDetails().getInitials
-
-    onMounted(async () => {
-      loading.value = true
-      await store.dispatch('fetchCustomers')
-      loading.value = false
-    })
-
-    const close = () => {
-      emit('close')
-    }
-
-    const startReturn = (customer) => {
-      emit('select-customer', customer)
-      close()
-    }
-    const gradientStyle = ()=>(
-   'linear-gradient(133.53deg, #00FF94 2.44%, rgba(112, 0, 255, 0.17) 100%)'
-  )
+  data() {
     return {
-      searchQuery,
-      filteredCustomers,
-      totalCustomers,
-      loading,
-      close,
-      startReturn,
-      getInitials,
-      getCustomerCity,
-      gradientStyle
+      loading: true,
+      searchQuery: '',
     }
+  },
+  computed: {
+    allCustomers() {
+      return this.$store.getters.getCustomers
+    },
+    totalCustomers() {
+      return this.allCustomers.length
+    },
+    filteredCustomers() {
+      if (!this.searchQuery) return this.allCustomers
+      
+      const query = this.searchQuery.toLowerCase()
+      return this.allCustomers.filter(customer => 
+        customer.name.toLowerCase().includes(query) ||
+        customer.datasource_id.toLowerCase().includes(query) ||
+        (customer.name_2 && customer.name_2.toLowerCase().includes(query)) ||
+        (customer?.parent?.name_2 && customer?.parent?.name_2.toLowerCase().includes(query)) ||
+        (customer?.parent?.name && customer?.parent?.name.toLowerCase().includes(query))
+      )
+    }
+  },
+  methods: {
+    close() {
+      this.$emit('close')
+    },
+    startReturn(customer) {
+      this.$emit('select-customer', customer)
+      this.close()
+    },
+    getInitials(name, name2) {
+      if (!name) return ''
+      const initials = []
+      const firstNameInitial = name.split(' ')[0][0]
+      initials.push(firstNameInitial)
+      
+      if (name2) {
+        const secondNameInitial = name2.split(' ')[0][0]
+        initials.push(secondNameInitial)
+      }
+      return initials.join('').toUpperCase()
+    },
+    getCustomerCity(customer) {
+      if (customer.shipping_addresses?.length > 0) {
+        const primaryAddress = customer.shipping_addresses.find(addr => addr.is_primary)
+        return primaryAddress?.city || customer.shipping_addresses[0].city
+      }
+      return customer.store_locations?.[0]?.city || ''
+    },
+    gradientStyle() {
+      return 'linear-gradient(133.53deg, #00FF94 2.44%, rgba(112, 0, 255, 0.17) 100%)'
+    }
+  },
+  async mounted() {
+    this.loading = true
+    await this.$store.dispatch('fetchCustomers')
+    this.loading = false
   }
 }
 </script>

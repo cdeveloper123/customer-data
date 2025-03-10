@@ -1,20 +1,14 @@
-const { defineConfig } = require('@vue/cli-service')
-
-module.exports = defineConfig({
-  transpileDependencies: true,
+module.exports = {
+  transpileDependencies: [],
   css: {
     loaderOptions: {
       scss: {
-        additionalData: `
-          @import "@/assets/styles/main.scss";
-        `
+        prependData: `@import "@/assets/styles/main.scss";`
       }
     }
   },
   devServer: {
-    static: {
-      directory: './public'
-    }
+    contentBase: './public'
   },
   publicPath: process.env.NODE_ENV === 'production' ? './' : '/'
-})
+}
