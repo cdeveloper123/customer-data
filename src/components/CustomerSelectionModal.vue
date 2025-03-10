@@ -42,10 +42,7 @@
         >
           <div class="customer-info">
             <div class="initials-container">
-              <div 
-                class="initials" 
-                :style="{ background: gradientStyle() }"
-              >
+              <div class="initials" :style="{ background: gradientStyle() }">
                 {{ getInitials(customer.name, customer.name_2) }}
               </div>
               <i v-if="customer.status.toLowerCase() === 'approved'" class="fas fa-check-circle status-icon"></i>
